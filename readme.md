@@ -25,46 +25,25 @@ Welcome to the Warehouse Management System (WMS) project! This system is designe
 ## Features
 
 - Inventory Management: Track and manage stock levels, product locations, and inventory movements.
-- Order Management: Handle order processing, fulfillment, and shipment tracking.
-- Reporting and Analytics: Generate reports on inventory levels, order status, and performance metrics.
+- Order Management: Create orders, see previous orders and stock levels.
 - User Management: Define roles and permissions for different users within the system.
-- Integration: Seamlessly integrate with other military systems.
-- Print military protocol
+- Print dynamic delivery orders for signature.
+- CRUD operations on Products
+- CRUD operations on Shipments
 
-## Installation (Django)
+## Pages
 
-1.Give the following command to open the virtual environment and activate the system
+### Login
 
-    . venv/Scripts/activate
+![](https://raw.githubusercontent.com/rich-ter/army-warehouse-management-system/master/github_images/ΣΔΑ-Login.png)
 
-2.After installing Django, follow the next steps to modify the system 📦:
+### Dashboard
 
--Copy the project warehouses 🐙.
+![](https://raw.githubusercontent.com/rich-ter/army-warehouse-management-system/master/github_images/dashboard.png)
 
--Modify the database settings 'settings.py'.
+## Database Design
 
--Complete the immigration to create the necessary database.
-
-    python manage.py makemigrations
-    python manage.py migrate
-
-3.Create an admin user with access to the admin hub in Django
-
-    python manage.py createsuperuser
-
-4.Run the server 🏃:
-
-    python manage.py runserver
-
-The above process will start the server development in Django on your local computer and will include a URL (ex. http://127.0.0.1:8000/), therefore allowing you to open the website on your browser.
-
-### Prerequisites
-
-Make sure your computer meet the following requirements:
-
-1.Python: Your system requires Python for Django to run.
-
-2.Django: After installing Python to your systen, you can install Django using the pip command
+![](https://raw.githubusercontent.com/rich-ter/army-warehouse-management-system/master/github_images/db_scheme_V3.png)
 
 ## Usage
 
@@ -78,8 +57,3 @@ Once the system is up and running, you can perform the following actions:
 - Generate Reports: View and export reports on various warehouse metrics.
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXy4gTMb9AtJU6L-RCPYC8WMWkJ8cjrVEWtg&s" width="300" height="225"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/HellenicArmySeal.svg/1200px-HellenicArmySeal.svg.png" width="230" height="230">
-
-```bash
-
-
-```
