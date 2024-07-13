@@ -1,0 +1,142 @@
+[
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 1,
+        "fields": {
+            "name": "Tactical Military Drone Alpha",
+            "batch_number": "DRONE-ALPHA-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/tactical_military_drone_alpha.png",
+            "category": "Drones",
+            "usage": "Surveillance",
+            "description": "High-performance military drone for reconnaissance and combat missions.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 2,
+        "fields": {
+            "name": "Advanced Hacking Kit",
+            "batch_number": "HACK-KIT-ADV-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/advanced_hacking_kit.png",
+            "category": "Hacking Tools",
+            "usage": "Pentesting",
+            "description": "State-of-the-art hacking equipment for offensive cyber operations.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 3,
+        "fields": {
+            "name": "Stealth Surveillance Drone Beta",
+            "batch_number": "DRONE-BETA-002",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/stealth_surveillance_drone_beta.png",
+            "category": "Drones",
+            "usage": "Surveillance",
+            "description": "Stealth surveillance drone with thermal imaging and night vision capabilities.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 4,
+        "fields": {
+            "name": "Network Penetration Device",
+            "batch_number": "NPD-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/network_penetration_device.png",
+            "category": "Hacking Tools",
+            "usage": "Pentesting",
+            "description": "Sophisticated device for network penetration and data extraction.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 5,
+        "fields": {
+            "name": "High-Frequency Communication Jammer",
+            "batch_number": "JAM-HF-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/high_frequency_communication_jammer.png",
+            "category": "Communication Devices",
+            "usage": "Communication",
+            "description": "Jamming device for disrupting high-frequency communication signals.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 6,
+        "fields": {
+            "name": "Long-Range Military Drone Gamma",
+            "batch_number": "DRONE-GAMMA-003",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/long_range_military_drone_gamma.png",
+            "category": "Drones",
+            "usage": "Surveillance",
+            "description": "Advanced military drone with extended flight range and payload capacity.",
+            "owners": [1]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 7,
+        "fields": {
+            "name": "Quantum Encryption Device",
+            "batch_number": "QENC-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/quantum_encryption_device.png",
+            "category": "Encryption Devices",
+            "usage": "Encryption",
+            "description": "Device for ultra-secure quantum communication encryption.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 8,
+        "fields": {
+            "name": "Cyber Warfare Toolkit",
+            "batch_number": "CYBER-WAR-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/cyber_warfare_toolkit.png",
+            "category": "Hacking Tools",
+            "usage": "Pentesting",
+            "description": "Toolkit for conducting comprehensive cyber warfare operations.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 9,
+        "fields": {
+            "name": "High-Speed Tactical Drone Delta",
+            "batch_number": "DRONE-DELTA-004",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/high_speed_tactical_drone_delta.png",
+            "category": "Drones",
+            "usage": "Surveillance",
+            "description": "High-speed tactical drone with advanced maneuverability and stealth technology.",
+            "owners": [1, 2]
+        }
+    },
+    {
+        "model": "DjangoHUDApp.product",
+        "pk": 10,
+        "fields": {
+            "name": "Portable Signal Booster X",
+            "batch_number": "BOOST-X-001",
+            "unit_of_measurement": "ΤΕΜΑΧΙΑ",
+            "image": "product_images/portable_signal_booster_x.png",
+            "category": "Communication Devices",
+            "usage": "Communication",
+            "description": "Portable device to boost signal strength and communication range in remote areas.",
+            "owners": [1, 2]
+        }
+    }
+]

@@ -1,0 +1,153 @@
+{% load static %}
+{% load date_filters_greek %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ΠΡΩΤΟΚΟΛΛΟ ΠΑΡΑΔΟΣΗΣ – ΠΑΡΑΛΑΒΗΣ ΥΛΙΚΩΝ </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white; /* Ensure background is white for print */
+        }
+        .header {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .protocol-title {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .signatories {
+            margin-top: 20px;
+        }
+        .signatories th, .signatories td {
+            padding: 5px;
+            border: none;
+        }
+        .signatories table {
+            margin: auto;
+            border-collapse: separate;
+        }
+        .signature-name {
+            font-weight: bold;
+        }
+        .table-separator {
+            border-bottom: 2px solid black;
+            margin-top: 20px;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            {% if creator_group == 'ΔΙΔΕΣ' %}
+                487 ΤΔΒ/1ος ΛΟΧΟΣ
+            {% elif creator_group == 'ΔΟΡΥΦΟΡΙΚΑ' %}
+                487 ΤΔΒ/2ος ΛΟΧΟΣ
+            {% else %}
+                487 ΤΔΒ/1ος ή 2ος ΛΟΧΟΣ
+            {% endif %}
+        </div>
+        <div class="protocol-title">
+            <h1>ΠΡΩΤΟΚΟΛΛΟ ΠΑΡΑΔΟΣΗΣ – ΠΑΡΑΛΑΒΗΣ ΥΛΙΚΩΝ</h1>
+        </div>
+        <p>Στην Αθήνα σήμερα, την {{ shipment.date.day }} του μηνός {{ shipment.date|greek_month }} του έτους {{ shipment.date.year }},
+        ο υπογεγραμμένος {% if shipment.signatory %}{{ shipment.signatory }}{% else %}____________________{% endif %}
+        παρέλαβα από το 487 ΤΔΒ τα παρακάτω υλικά βάσει της διαταγής {% if shipment.order_number %}{{ shipment.order_number }}{% else %}____________________{% endif %}:</p>
+        
+        <!-- Product Table -->
+        <table class='product-table'>
+            <thead>
+                <tr>
+                    <th>Α/Α</th>
+                    <th>ΠΕΡΙΓΡΑΦΗ</th>
+                    <th>ΜΟΝ. ΜΕΤΡΗΣΗΣ</th>
+                    <th>ΠΟΣΟΤΗΤΑ</th>
+                    <th>ΠΑΡ/ΣΕΙΣ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in shipment_items %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.product.unit_of_measurement }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ shipment.notes }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Signatories -->
+        <div class="signatories">
+            <table>
+                <tr>
+                    <td colspan="3"><span class="signature-name">ΠΑΡΑΔΙΔΟΥΣΑ</span></td>
+                    <td colspan="3"><span class="signature-name">ΠΑΡΑΛΑΜΒΑΝΟΥΣΑ</span></td>
+                </tr>
+                <tr>
+                    <td>-Ο-</td>
+                    <td>-Ο-</td>
+                    <td>-Ο-</td>
+                    <td>-Ο-</td>
+                    <td>-Ο-</td>
+                    <td>-Ο-</td>
+                </tr>
+                <tr>
+                    <td>ΔΚΤΗΣ</td>
+                    <td>ΠΑΡΑΔΙΔΩΝ</td>
+                    <td>ΔΧΣΤΗΣ</td>
+                    <td>ΔΚΤΗΣ</td>
+                    <td>ΠΑΡΑΛΑΜΒΑΝΩΝ</td>
+                    <td>ΔΧΣΤΗΣ</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Table Separator -->
+        <div class="table-separator"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.print();
+        });
+    </script>
+</body>
+</html>

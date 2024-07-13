@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Πληροφορίες Προιόντος{% endblock %}
+
+{% block css %}
+    <link href="{% static 'plugins/summernote/dist/summernote-lite.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/blueimp-file-upload/css/jquery.fileupload.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/tag-it/css/jquery.tagit.css' %}" rel="stylesheet" />
+    <style>
+        .full-height-row {
+            display: flex;
+            align-items: stretch;
+        }
+        .full-height-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .full-width-button-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: flex-end;
+        }
+        .full-width-button {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'plugins/summernote/dist/summernote-lite.min.js' %}"></script>
+    <script src="{% static 'plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'plugins/blueimp-tmpl/js/tmpl.min.js' %}"></script>
+    <script src="{% static 'plugins/blueimp-load-image/js/load-image.all.min.js' %}"></script>
+    <script src="{% static 'plugins/blueimp-canvas-to-blob/js/canvas-to-blob.min.js' %}"></script>
+    <script src="{% static 'plugins/blueimp-gallery/js/jquery.blueimp-gallery.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'plugins/tag-it/js/tag-it.min.js' %}"></script>
+    <script src="{% static 'js/demo/page-product-details.demo.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('image').addEventListener('change', function (event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var maxSize = 5 * 1024 * 1024; // 5 MB
+                    if (file.size > maxSize) {
+                        alert('Το μέγεθος του αρχείου δεν πρέπει να υπερβαίνει τα 5 MB');
+                        event.target.value = '';
+                    }
+                    var validTypes = ['image/jpeg', 'image/png'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Επιτρέπονται μόνο αρχεία JPG και PNG');
+                        event.target.value = '';
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %} 
+
+{% block content %}
+    <div class="d-flex align-items-center mb-3">
+        <div>
+            <h1 class="page-header mb-0">Προσθήκη Προιόντος</h1>
+        </div>
+    </div>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row gx-4 full-height-row">
+            <div class="col-lg-8 full-height-col">
+                <div class="card mb-4 flex-grow-1">
+                    <div class="card-header d-flex align-items-center bg-inverse bg-opacity-10 fw-400">
+                        Πληροφορίες Προιόντος
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            {{ form.name.errors }}
+                            <label class="form-label">Τίτλος <span class="text-danger">*</span></label>
+                            {{ form.name }} 
+                        </div>
+                        <div class="mb-3">
+                            {{ form.batch_number.errors }}
+                            <label class="form-label">Αριθμός Μερίδας <span class="text-danger">*</span></label>
+                            {{ form.batch_number }} 
+                        </div>    
+                        <div class="mb-3">
+                            {{ form.description.errors }}
+                            <label class="form-label">Περιγραφή <span class="text-danger">*</span></label>
+                            {{ form.description }} <!-- Render the 'description' field -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 full-height-col">
+                <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center fw-400 bg-inverse bg-opacity-10">
+                        <div class="flex-1">
+                            <div>Στοιχεία Προιόντος</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Μονάδα Μέτρησης</label>
+                            <div class="mb-lg-0 mb-3">
+                                {{ form.unit_of_measurement }}
+                            </div>
+                        </div> 
+                        <div class="mb-3">
+                            <label class="form-label">Κατηγορία Προιόντος</label>
+                            <div class="mb-lg-0 mb-3">
+                                {{ form.category }}
+                            </div>
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Χρήση Προιόντος</label>
+                            <div class="mb-lg-0 mb-3">
+                                {{ form.usage }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center bg-inverse bg-opacity-10 fw-400">
+                        Φωτογραφία
+                    </div>
+                    <div class="card-body">
+                        <input type="file" id="image" name="image" class="form-control" accept="image/jpeg, image/png">
+                    </div>
+                </div>
+                <div class="full-width-button-container">
+                    <button type="submit" class="btn btn-outline-theme btn-lg full-width-button">Δημιουργία Προιόντος</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
