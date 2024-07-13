@@ -14,15 +14,24 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Copy the requirements file into the container
+COPY ./template_django/requirements.txt /app/
 
-# Copy the application code
-COPY . /app/
+# Install Python dependencies from the online repositories
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Copy the application code into the container
+COPY ./template_django/ /app/
+
+# Set the DJANGO_SETTINGS_MODULE environment variable
+ENV DJANGO_SETTINGS_MODULE=DjangoHUD.settings
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
+
+# Ensure the media directory exists
+RUN mkdir -p /app/product_images && chown -R www-data:www-data /app/product_images
 
 # Expose the port the app runs on
 EXPOSE 8000
