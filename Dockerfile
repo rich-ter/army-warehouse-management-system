@@ -8,16 +8,18 @@ ENV PYTHONUNBUFFERED 1
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the deb files and install system dependencies and Python
-COPY ./template_django/offline-packages/debs /debs/
-RUN dpkg -i /debs/*.deb || apt-get -f install -y && rm -rf /var/lib/apt/lists/* /debs
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file and the offline packages into the container
+# Copy the requirements file into the container
 COPY ./template_django/requirements.txt /app/
-COPY ./template_django/offline-packages /app/offline-packages
 
-# Install Python dependencies from the offline packages
-RUN pip install --no-index --find-links=/app/offline-packages -r requirements.txt
+# Install Python dependencies from the online repositories
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
 # Copy the application code into the container
 COPY ./template_django/ /app/
